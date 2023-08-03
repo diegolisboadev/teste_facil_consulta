@@ -8,7 +8,7 @@ use Faker\Provider\pt_BR\Address;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class CidadesFactory extends Factory
+class CidadeFactory extends Factory
 {
     /**
      * Define the model's default state.
