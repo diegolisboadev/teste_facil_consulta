@@ -3,7 +3,7 @@
 use App\Http\Controllers\Api\v1\CidadesController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Route; 
 
 /*
 |--------------------------------------------------------------------------

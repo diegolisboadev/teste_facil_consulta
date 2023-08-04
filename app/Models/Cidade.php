@@ -10,4 +10,6 @@ class Cidade extends Model
     use HasFactory;
 
     protected $fillable = ['nome', 'estado'];
+
+    protected $dates = ['created_at', 'updated_at'];
 }

@@ -10,4 +10,6 @@ class Paciente extends Model
     use HasFactory;
 
     protected $fillable = ['nome', 'cpf', 'celular'];
+
+    protected $dates = ['created_at', 'updated_at'];
 }

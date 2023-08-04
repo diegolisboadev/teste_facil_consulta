@@ -10,4 +10,6 @@ class Medico extends Model
     use HasFactory;
 
     protected $fillable = ['nome', 'especialidade', 'cidade_id'];
+
+    protected $dates = ['created_at', 'updated_at'];
 }

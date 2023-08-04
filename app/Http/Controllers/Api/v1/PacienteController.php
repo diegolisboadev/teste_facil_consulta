@@ -3,24 +3,28 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
-use App\Models\Cidade;
+use App\Http\Requests\PacienteRequest;
+use App\Services\PacienteService;
 use Illuminate\Http\Request;
 
-class CidadesController extends Controller
+class PacienteController extends Controller
 {
+    public function __construct(private PacienteService $pacienteService)
+    {
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         //
-        return Cidade::all();
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PacienteRequest $request)
     {
         //
     }
