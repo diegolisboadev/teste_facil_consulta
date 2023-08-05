@@ -6,7 +6,7 @@ class MedicoDto
 {
     public function __construct(
         public readonly string $nome,
-        public readonly float $especialidade,
+        public readonly string $especialidade,
         public readonly string $cidade,
     ) {
     }

@@ -6,7 +6,7 @@ class CidadeDto
 {
     public function __construct(
         public readonly string $nome,
-        public readonly float $estado
+        public readonly string $estado
     ) {
     }
 }

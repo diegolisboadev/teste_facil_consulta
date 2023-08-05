@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CidadeRequest;
 use App\Http\Resources\CidadesCollection;
 use App\Http\Resources\CidadesResource;
+use App\Models\Medico;
 use App\Services\CidadeService;
 use Illuminate\Http\Request;
 
@@ -30,9 +31,6 @@ class CidadeController extends Controller
      */
     public function store(CidadeRequest $request)
     {
-        return new CidadesResource($this->cidadeService->createCidade(
-            new CidadeDto($request->nome, $request->estado)
-        ));
     }
 
     /**
@@ -40,7 +38,6 @@ class CidadeController extends Controller
      */
     public function show(string $id)
     {
-        return new CidadesResource($this->cidadeService->findCidade($id));
     }
 
     /**
@@ -48,18 +45,19 @@ class CidadeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        return new CidadesResource(
-            $this->cidadeService->updateCidade(
-                $id,
-                new CidadeDto($request->nome, $request->estado)
-            )
-        );
     }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
+    {
+    }
+
+    /**
+     *
+     */
+    public function getMedicosPorCidade()
     {
     }
 }

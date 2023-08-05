@@ -2,11 +2,26 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Cidade;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Http\Resources\Json\JsonResource;
 
-class CidadesResource extends ResourceCollection
+class CidadesResource extends JsonResource
 {
+    /**
+     * Indicates if the resource's collection keys should be preserved.
+     *
+     * @var bool
+     */
+    public $preserveKeys = true;
+
+     /**
+     * The resource that this resource collects.
+     *
+     * @var string
+     */
+    public $collects = Cidade::class;
+
     /**
      * Transform the resource into an array.
      *
@@ -16,9 +31,9 @@ class CidadesResource extends ResourceCollection
     {
         return [
             'nome' => $this->nome,
-            'estado' => $this->preco,
-            'data_criacao' => $this->created_at->format('Y-m-d h:i:s'),
-            'data_atualizacao' => $this->updated_at->format('Y-m-d h:i:s')
+            'estado' => $this->estado,
+            'data_criacao' => $this->created_at->format('d/m/Y h:i:s'),
+            'data_atualizacao' => $this->updated_at->format('d/m/Y h:i:s')
         ];
     }
 }

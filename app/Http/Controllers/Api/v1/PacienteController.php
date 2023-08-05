@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\DTO\PacienteDto;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PacienteRequest;
+use App\Http\Resources\PacienteCollection;
+use App\Http\Resources\PacienteResource;
 use App\Services\PacienteService;
 use Illuminate\Http\Request;
 
@@ -18,7 +21,7 @@ class PacienteController extends Controller
      */
     public function index()
     {
-        //
+        return new PacienteCollection($this->pacienteService->findAllPacientes());
     }
 
     /**
@@ -26,7 +29,9 @@ class PacienteController extends Controller
      */
     public function store(PacienteRequest $request)
     {
-        //
+        return new PacienteResource($this->pacienteService->createPaciente(
+            new PacienteDto($request->nome, $request->cpf, $request->celular)
+        ));
     }
 
     /**
@@ -42,7 +47,12 @@ class PacienteController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        return new PacienteResource(
+            $this->pacienteService->updatePaciente(
+                $id,
+                new PacienteDto($request->nome, $request->cpf, $request->celular)
+            )
+        );
     }
 
     /**

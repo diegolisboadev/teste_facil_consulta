@@ -6,6 +6,7 @@ use App\DTO\MedicoDto;
 use App\Repositories\Contracts\IMedicoRepository;
 use App\Services\Contracts\IMedicoService;
 use Illuminate\Support\Facades\DB;
+use Throwable;
 
 class MedicoService implements IMedicoService
 {
@@ -26,34 +27,25 @@ class MedicoService implements IMedicoService
 
     public function createMedico(MedicoDto $medicoDto)
     {
-        DB::transaction(function () use ($medicoDto) {
+        DB::beginTransaction();
+        try {
             return $this->medicoRepository->create([
                 'nome' => $medicoDto->nome,
-                'estado' => $medicoDto->especialidade,
+                'especialidade' => $medicoDto->especialidade,
                 'cidade_id' => $medicoDto->cidade
-
             ]);
-        });
+            DB::commit();
+        } catch (Throwable) {
+            DB::rollBack();
+            return response()->json(['data' => ['status' => 500, 'error' => 'Erro na Inserção!']], 500);
+        }
     }
 
     public function updateMedico(int $id, MedicoDto $medicoDto)
     {
-        DB::transaction(function () use ($medicoDto, $id) {
-            return $this->medicoRepository->update(
-                [
-                    'nome' => $medicoDto->nome,
-                    'estado' => $medicoDto->especialidade,
-                    'cidade_id' => $medicoDto->cidade
-                ],
-                $id
-            );
-        });
     }
 
     public function deleteMedico(int $id)
     {
-        DB::transaction(function () use ($id) {
-            return $this->medicoRepository->delete($id);
-        });
     }
 }

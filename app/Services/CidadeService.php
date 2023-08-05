@@ -26,31 +26,13 @@ class CidadeService implements ICidadeService
 
     public function createCidade(CidadeDto $cidadeDto)
     {
-        DB::transaction(function () use ($cidadeDto) {
-            return $this->cidadeRepository->create([
-                'nome' => $cidadeDto->nome,
-                'estado' => $cidadeDto->estado
-            ]);
-        });
     }
 
     public function updateCidade(int $id, CidadeDto $cidadeDto)
     {
-        DB::transaction(function () use ($cidadeDto, $id) {
-            return $this->cidadeRepository->update(
-                [
-                    'nome' => $cidadeDto->nome,
-                    'estado' => $cidadeDto->estado
-                ],
-                $id
-            );
-        });
     }
 
     public function deleteCidade(int $id)
     {
-        DB::transaction(function () use ($id) {
-            return $this->cidadeRepository->delete($id);
-        });
     }
 }

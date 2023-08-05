@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\DTO\MedicoDto;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MedicoRequest;
+use App\Http\Resources\MedicoCollection;
+use App\Http\Resources\MedicoResource;
 use App\Services\MedicoService;
 use Illuminate\Http\Request;
 
@@ -18,7 +21,7 @@ class MedicoController extends Controller
      */
     public function index()
     {
-        //
+        return new MedicoCollection($this->medicoService->findAllMedicos());
     }
 
     /**
@@ -26,7 +29,9 @@ class MedicoController extends Controller
      */
     public function store(MedicoRequest $request)
     {
-        //
+        return new MedicoResource($this->medicoService->createMedico(
+            new MedicoDto($request->nome, $request->especialidade, $request->cidade)
+        ));
     }
 
     /**
