@@ -3,10 +3,10 @@
 namespace App\Services;
 
 use App\DTO\MedicoDto;
+use App\Models\Medico;
 use App\Repositories\Contracts\IMedicoRepository;
 use App\Services\Contracts\IMedicoService;
 use Illuminate\Support\Facades\DB;
-use Throwable;
 
 class MedicoService implements IMedicoService
 {
@@ -27,18 +27,13 @@ class MedicoService implements IMedicoService
 
     public function createMedico(MedicoDto $medicoDto)
     {
-        DB::beginTransaction();
-        try {
+        return DB::transaction(function () use ($medicoDto): Medico {
             return $this->medicoRepository->create([
                 'nome' => $medicoDto->nome,
                 'especialidade' => $medicoDto->especialidade,
                 'cidade_id' => $medicoDto->cidade
             ]);
-            DB::commit();
-        } catch (Throwable) {
-            DB::rollBack();
-            return response()->json(['data' => ['status' => 500, 'error' => 'Erro na Inserção!']], 500);
-        }
+        });
     }
 
     public function updateMedico(int $id, MedicoDto $medicoDto)
