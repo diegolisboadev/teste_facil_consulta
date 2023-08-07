@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\Api\v1\CidadesController;
+use App\Http\Controllers\Api\v1\CidadeController;
+use App\Http\Controllers\Api\v1\MedicoController;
+use App\Http\Controllers\Api\v1\PacienteController;
 use App\Http\Controllers\Auth\LoginController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route; 
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,16 +17,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/* Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-}); */
-
 Route::post('/login', [LoginController::class, 'login']);
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function () {
-    Route::apiResources([
-        'cidades' => CidadesController::class,
-        // 'produtos' => ProductsController::class
-    ]);
+    Route::apiResource('pacientes', PacienteController::class);
+    Route::post('medicos', [MedicoController::class, 'store'])->name('medicos.store');
+
+    Route::post('/medicos/{id_medico}/pacientes', [MedicoController::class, 'storeMedicosPacientes'])->name('medicos.medicos-pacientes');
+    Route::get('/medicos/{id_medico}/pacientes', [MedicoController::class, 'showMedicoPacientes'])->name('medicos.show-medicos-pacientes');
+});
+
+Route::group(['prefix' => 'v1'], function () {
+    Route::apiResource('cidades', CidadeController::class)->except(['store', 'show', 'update', 'destroy']);
+    Route::get('/cidades/{id_cidade}/medicos', [CidadeController::class, 'getMedicosPorCidade'])->name('cidades.medico-por-cidade');
+
+    Route::get('medicos', [MedicoController::class, 'index'])->name('medicos.index');
 });
