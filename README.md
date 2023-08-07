@@ -16,7 +16,7 @@ O Projeto consiste em uma API Rest para gerir dados entre as entidades:
 -   Mapei os endpoints atraves do routes/api.php
 -   As rotas se iniciam com ex.: http://localhost/api/v1/
 -   Ou realize o download do .json do Postman na raiz do projeto
-    -   [API Projeto - Postman]()
+    -   [API Projeto - Postman](https://github.com/diegolisboadev/teste_facil_consulta/blob/master/Api%20Teste%20Facil%20Consulta.postman_collection.json)
 
 ## Observações
 
