@@ -9,7 +9,6 @@ use App\Http\Requests\MedicoRequest;
 use App\Http\Resources\MedicoCollection;
 use App\Http\Resources\MedicoResource;
 use App\Http\Resources\PacienteCollection;
-use App\Http\Resources\PacienteResource;
 use App\Services\MedicoService;
 use Illuminate\Http\Request;
 

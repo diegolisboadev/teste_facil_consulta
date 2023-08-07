@@ -38,6 +38,6 @@ class CidadeService implements ICidadeService
 
     public function getDoctorsByCity(int $id)
     {
-        return $this->cidadeRepository->getRelationship('medico')->findOrFail($id);
+        return $this->cidadeRepository->getRelationship('medicos')->findOrFail($id)->medicos;
     }
 }

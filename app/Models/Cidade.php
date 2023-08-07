@@ -14,7 +14,7 @@ class Cidade extends Model
 
     protected $dates = ['created_at', 'updated_at'];
 
-    public function medico(): HasMany
+    public function medicos(): HasMany
     {
         return $this->hasMany(Medico::class, null, 'id');
     }

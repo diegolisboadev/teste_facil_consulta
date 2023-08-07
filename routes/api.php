@@ -22,8 +22,8 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function () {
     Route::apiResource('pacientes', PacienteController::class);
+    
     Route::post('medicos', [MedicoController::class, 'store'])->name('medicos.store');
-
     Route::post('/medicos/{id_medico}/pacientes', [MedicoController::class, 'storeMedicosPacientes'])->name('medicos.medicos-pacientes');
     Route::get('/medicos/{id_medico}/pacientes', [MedicoController::class, 'showMedicoPacientes'])->name('medicos.show-medicos-pacientes');
 });

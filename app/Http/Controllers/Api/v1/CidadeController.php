@@ -5,9 +5,8 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CidadeRequest;
 use App\Http\Resources\CidadesCollection;
-use App\Models\Cidade;
+use App\Http\Resources\MedicoCollection;
 use App\Services\CidadeService;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class CidadeController extends Controller
@@ -58,8 +57,6 @@ class CidadeController extends Controller
      */
     public function getMedicosPorCidade(int $id_cidade)
     {
-        return response()->json([
-            'data' => [$this->cidadeService->getDoctorsByCity($id_cidade)]
-        ]);
+        return new MedicoCollection($this->cidadeService->getDoctorsByCity($id_cidade));
     }
 }

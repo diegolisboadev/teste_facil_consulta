@@ -45,7 +45,7 @@ class PacienteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(PacienteRequest $request, string $id)
     {
         return new PacienteResource(
             $this->pacienteService->updatePaciente(
