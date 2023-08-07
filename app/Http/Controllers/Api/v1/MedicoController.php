@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\DTO\MedicoDto;
 use App\DTO\MedicoPacienteDto;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MedicoPacienteRequest;
 use App\Http\Requests\MedicoRequest;
 use App\Http\Resources\MedicoCollection;
 use App\Http\Resources\MedicoResource;
@@ -63,7 +64,7 @@ class MedicoController extends Controller
     /**
      * Armazenar todos pacientes com os médicos
      */
-    public function storeMedicosPacientes(Request $request, int $id_medico)
+    public function storeMedicosPacientes(MedicoPacienteRequest $request, int $id_medico)
     {
         return $this->medicoService->createPacientAndDoctor(
             new MedicoPacienteDto($request->medico_id, $request->paciente_id),
