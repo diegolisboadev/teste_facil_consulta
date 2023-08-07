@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\DTO\MedicoDto;
+use App\DTO\MedicoPacienteDto;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MedicoRequest;
 use App\Http\Resources\MedicoCollection;
 use App\Http\Resources\MedicoResource;
+use App\Http\Resources\PacienteCollection;
+use App\Http\Resources\PacienteResource;
 use App\Services\MedicoService;
 use Illuminate\Http\Request;
 
@@ -56,5 +59,24 @@ class MedicoController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    /**
+     * Armazenar todos pacientes com os médicos
+     */
+    public function storeMedicosPacientes(Request $request, int $id_medico)
+    {
+        return $this->medicoService->createPacientAndDoctor(
+            new MedicoPacienteDto($request->medico_id, $request->paciente_id),
+            $id_medico
+        );
+    }
+
+    /**
+     * Retorna todas os medicos de uma determinada cidade
+     */
+    public function showMedicoPacientes(int $id_medico)
+    {
+        return new PacienteCollection($this->medicoService->getDoctorsByPacient($id_medico));
     }
 }

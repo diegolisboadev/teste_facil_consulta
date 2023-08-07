@@ -13,8 +13,8 @@ class Paciente extends Model
 
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
-    public function medicosPacientes()
+    public function medicos()
     {
-        return $this->belongsToMany(Medico::class, relation: 'medicosPacientes')->withPivot('id')->withTimestamps();;
+        return $this->belongsToMany(Medico::class, relation: 'medicos')->withPivot('id')->withTimestamps();
     }
 }

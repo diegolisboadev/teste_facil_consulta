@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Medico extends Model
 {
@@ -19,8 +19,8 @@ class Medico extends Model
         return $this->belongsTo(Cidade::class, 'cidade_id');
     }
 
-    public function pacientesMedicos()
+    public function pacientes(): BelongsToMany
     {
-        return $this->belongsToMany(Paciente::class, relation: 'pacientesMedicos')->withPivot('id')->withTimestamps();
+        return $this->belongsToMany(Paciente::class, relation: 'pacientes')->withPivot('id')->withTimestamps();
     }
 }

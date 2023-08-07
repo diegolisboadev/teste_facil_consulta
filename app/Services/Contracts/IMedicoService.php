@@ -13,4 +13,5 @@ interface IMedicoService
     public function updateMedico(int $id, MedicoDto $medicoDto);
     public function deleteMedico(int $id);
     public function createPacientAndDoctor(MedicoPacienteDto $medicoPacienteDto, int $id);
+    public function getDoctorsByPacient(int $id);
 }
