@@ -11,4 +11,5 @@ interface ICidadeService
     public function createCidade(CidadeDto $cidadeDto);
     public function updateCidade(int $id, CidadeDto $cidadeDto);
     public function deleteCidade(int $id);
+    public function getDoctorsByCity(int $id);
 }

@@ -9,4 +9,5 @@ interface IPacienteRepository
     public function findById(int $id);
     public function update(array $fields, int $id);
     public function delete(int $id);
+    public function getRelationship(string $relation);
 }

@@ -41,6 +41,11 @@ abstract class AbstractRepository
         return $model;
     }
 
+    public function getRelationship(string $relation)
+    {
+        return $this->model->with($relation);
+    }
+
     protected function resolveModel()
     {
         return app($this->model);

@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\DTO\CidadeDto;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CidadeRequest;
 use App\Http\Resources\CidadesCollection;
-use App\Http\Resources\CidadesResource;
-use App\Models\Medico;
+use App\Models\Cidade;
 use App\Services\CidadeService;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class CidadeController extends Controller
@@ -55,9 +54,12 @@ class CidadeController extends Controller
     }
 
     /**
-     *
+     * Retorna todas os medicos de uma determinada cidade
      */
-    public function getMedicosPorCidade()
+    public function getMedicosPorCidade(int $id_cidade)
     {
+        return response()->json([
+            'data' => [$this->cidadeService->getDoctorsByCity($id_cidade)]
+        ]);
     }
 }

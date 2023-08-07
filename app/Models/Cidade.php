@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Cidade extends Model
 {
@@ -14,8 +14,8 @@ class Cidade extends Model
 
     protected $dates = ['created_at', 'updated_at'];
 
-    public function medico(): HasOne
+    public function medico(): HasMany
     {
-        return $this->hasOne(Medico::class, null, 'id');
+        return $this->hasMany(Medico::class, null, 'id');
     }
 }

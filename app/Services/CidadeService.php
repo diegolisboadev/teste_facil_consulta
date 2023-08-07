@@ -35,4 +35,9 @@ class CidadeService implements ICidadeService
     public function deleteCidade(int $id)
     {
     }
+
+    public function getDoctorsByCity(int $id)
+    {
+        return $this->cidadeRepository->getRelationship('medico')->findOrFail($id);
+    }
 }

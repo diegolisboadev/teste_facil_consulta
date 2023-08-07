@@ -12,4 +12,9 @@ class Paciente extends Model
     protected $fillable = ['nome', 'cpf', 'celular'];
 
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
+
+    public function medicosPacientes()
+    {
+        return $this->belongsToMany(Medico::class, relation: 'medicosPacientes')->withPivot('id')->withTimestamps();;
+    }
 }
